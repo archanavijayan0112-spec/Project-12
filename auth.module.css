@@ -1,0 +1,11 @@
+import Providers from "@/components/layout/Providers";
+import Navbar from "@/components/layout/Navbar";
+
+export default function OrdersLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Providers>
+      <Navbar />
+      <main>{children}</main>
+    </Providers>
+  );
+}

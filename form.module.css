@@ -1,0 +1,28 @@
+"use client";
+
+import { useCart } from "@/lib/cart-store";
+import toast from "react-hot-toast";
+import styles from "./AddToCartButton.module.css";
+
+interface Props {
+  product: { id: string; name: string; price: number; image: string; stock: number };
+}
+
+export default function AddToCartButton({ product }: Props) {
+  const addItem = useCart((s) => s.addItem);
+
+  function handleAdd() {
+    addItem(product);
+    toast.success(`${product.name} added to cart`);
+  }
+
+  return (
+    <button
+      onClick={handleAdd}
+      disabled={product.stock === 0}
+      className={styles.btn}
+    >
+      {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
+    </button>
+  );
+}
